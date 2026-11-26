@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240">
+  <rect width="400" height="240" fill="#0b2545"/>
+  <path d="M0 155 Q70 130 140 155 T280 155 T420 155 L420 240 L0 240 Z" fill="#134074"/>
+  <path d="M0 185 Q75 162 150 185 T300 185 T420 185 L420 240 L0 240 Z" fill="#1d65a6"/>
+  <polygon points="155,150 245,150 225,172 175,172" fill="#f4a261"/>
+  <polygon points="200,72 200,145 245,138" fill="#eef4ed"/>
+  <line x1="200" y1="70" x2="200" y2="150" stroke="#e0fbfc" stroke-width="4"/>
+</svg>
+

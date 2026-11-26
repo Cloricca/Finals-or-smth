@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PixelVault — Indie &amp; Retro Game Backlog Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#home">PixelVault</a>
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#catalog">Game Catalog</a></li>
+          <li><a href="#planner">Playtime Planner</a></li>
+          <li><a href="#guide">Guide &amp; Schedule</a></li>
+          <li><a href="#contact">Suggest / Report</a></li>
+        </ul>
+      </nav>
+
+      <details class="mobile-nav">
+        <summary aria-label="Toggle navigation menu">Menu</summary>
+        <nav aria-label="Mobile navigation">
+          <ul class="nav-list-mobile">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#catalog">Game Catalog</a></li>
+            <li><a href="#planner">Playtime Planner</a></li>
+            <li><a href="#guide">Guide &amp; Schedule</a></li>
+            <li><a href="#contact">Suggest / Report</a></li>
+          </ul>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            Curated <abbr title="Independent and Retro-Style">I&amp;R</abbr> Catalog
+          </p>
+          <h1>Plan your next favorite game without drowning in your backlog.</h1>
+          <p class="lead">
+            PixelVault helps players search hand-picked <em>indie</em> and
+            <strong>retro-inspired</strong> titles, build a quick play queue,
+            estimate how many days a game will take, and submit corrections or new picks.
+          </p>
+
+          <ul class="quick-facts">
+            <li><strong>Catalog size:</strong> 8 original curated titles</li>
+            <li><strong>Updated:</strong> <time datetime="2026-11-25">November 25, 2026</time></li>
+            <li><strong>Focus:</strong> Bite-sized to mid-length <mark>backlog-friendly</mark> games</li>
+          </ul>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#catalog">Browse Catalog</a>
+            <a class="btn btn-secondary" href="#planner">Estimate Playtime</a>
+          </div>
+        </div>
+
+        <figure class="hero-figure">
+          <img
+            src="images/hero-arcade.svg"
+            alt="Retro pixel city skyline under a golden moon with glowing neon grid lines"
+          >
+          <figcaption>
+            PixelVault Seasonal Banner &mdash; curated picks updated
+            <time datetime="2026-11">Fall 2026</time>.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="container highlights-grid">
+        <article class="highlight-card">
+          <h2>1. Search &amp; Filter</h2>
+          <p>Narrow down titles live by keyword, genre, or challenge level.</p>
+          <a href="#catalog">Jump to catalog &rarr;</a>
+        </article>
+        <article class="highlight-card">
+          <h2>2. Track Your Queue</h2>
+          <p>Save games to your personal backlog list and watch total hours update.</p>
+          <a href="#catalog">Open your queue &rarr;</a>
+        </article>
+        <article class="highlight-card">
+          <h2>3. Estimate Finish Date</h2>
+          <p>Pick a title and your daily pace to see when you will roll credits.</p>
+          <a href="#planner">Try the planner &rarr;</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="catalog" class="catalog-section">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Game Catalog</h2>
+          <p>Search titles in real time or save games to your session backlog.</p>
+        </div>
+
+        <div class="filter-bar" role="search" aria-label="Filter game catalog">
+          <div class="field-group">
+            <label for="searchInput">Search by title or tag</label>
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="e.g. synthwave, RPG, cozy..."
+            >
+          </div>
+
+          <div class="field-group">
+            <label for="genreFilter">Genre</label>
+            <select id="genreFilter">
+              <option value="all">All Genres</option>
+              <option value="Action">Action</option>
+              <option value="RPG">RPG</option>
+              <option value="Puzzle">Puzzle</option>
+              <option value="Adventure">Adventure</option>
+              <option value="Simulation">Simulation</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="difficultyFilter">Difficulty</label>
+            <select id="difficultyFilter">
+              <option value="all">Any Difficulty</option>
+              <option value="Relaxed">Relaxed</option>
+              <option value="Balanced">Balanced</option>
+              <option value="Challenging">Challenging</option>
+            </select>
+          </div>
+        </div>
+
+        <p id="resultCount" class="result-count" aria-live="polite"></p>
+
+        <div class="catalog-layout">
+          <div id="catalogGrid" class="catalog-grid"></div>
+
+          <aside class="backlog-panel" aria-labelledby="backlogHeading">
+            <div class="backlog-header">
+              <h3 id="backlogHeading">My Backlog</h3>
+              <button id="clearBacklogBtn" class="btn-link" type="button">
+                Clear all
+              </button>
+            </div>
+            <p class="backlog-subtitle">
+              Saved games stay in memory for this session.
+            </p>
+            <ul id="backlogList" class="backlog-list"></ul>
+            <div id="backlogSummary" class="backlog-summary"></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="planner" class="planner-section">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Playtime &amp; Finish-Date Estimator</h2>
+          <p>
+            Choose a game from the catalog to auto-fill its hours, or enter custom
+            numbers to calculate your completion timeline live.
+          </p>
+        </div>
+
+        <div class="planner-card">
+          <div class="planner-inputs">
+            <div class="field-group">
+              <label for="plannerGame">Preset Game (optional)</label>
+              <select id="plannerGame">
+                <option value="">Custom entry</option>
+              </select>
+            </div>
+
+            <div class="input-row">
+              <div class="field-group">
+                <label for="mainHoursInput">Main Story (hours)</label>
+                <input
+                  id="mainHoursInput"
+                  type="number"
+                  min="1"
+                  max="500"
+                  step="0.5"
+                  value="12"
+                >
+              </div>
+
+              <div class="field-group">
+                <label for="extraHoursInput">Side Content (hours)</label>
+                <input
+                  id="extraHoursInput"
+                  type="number"
+                  min="0"
+                  max="500"
+                  step="0.5"
+                  value="6"
+                >
+              </div>
+            </div>
+
+            <div class="input-row">
+              <div class="field-group">
+                <label for="completionMode">Play Style</label>
+                <select id="completionMode">
+                  <option value="main">Main Story Only</option>
+                  <option value="full">Main Story + Side Content</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <label for="dailyHoursInput">Hours Per Day</label>
+                <input
+                  id="dailyHoursInput"
+                  type="number"
+                  min="0.5"
+                  max="16"
+                  step="0.5"
+                  value="2"
+                >
+              </div>
+            </div>
+          </div>
+
+          <div id="plannerResult" class="planner-result" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="guide" class="guide-section">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Backlog Guide, Schedule &amp; Glossary</h2>
+          <p>
+            Helpful lists, terminology, and our weekly community play schedule.
+          </p>
+        </div>
+
+        <div class="guide-grid">
+          <article class="guide-card">
+            <h3>How to Clear Your Backlog</h3>
+            <p class="guide-intro">
+              Follow these ordered steps using mixed list styles (Roman numerals,
+              alphabetical sub-steps, and square/circle sub-bullets):
+            </p>
+            <ol class="roman-list">
+              <li>
+                <strong>Pick one focus game</strong> from the catalog
+                <ol class="alpha-list">
+                  <li>Filter by your favorite genre first.</li>
+                  <li>Save 2&ndash;3 backups to <em>My Backlog</em>.</li>
+                </ol>
+              </li>
+              <li>
+                <strong>Check your pace</strong> in the Playtime Planner
+                <ul class="circle-list">
+                  <li>Aim for a realistic daily goal (1&ndash;2 hours).</li>
+                  <li>Use <code>Main Story Only</code> for faster clears.</li>
+                </ul>
+              </li>
+              <li>
+                <strong>Share feedback</strong> if a playtime estimate looks off.
+              </li>
+            </ol>
+
+            <h4>What Makes a Great Backlog Pick</h4>
+            <ul class="disc-list">
+              <li>Clear main-story pacing under 35 hours</li>
+              <li>Distinct visual identity:
+                <ul class="square-list">
+                  <li>Hand-crafted pixel or vector art</li>
+                  <li>Readable HUD and instant save states</li>
+                </ul>
+              </li>
+              <li>Fair difficulty options for weeknight play</li>
+            </ul>
+          </article>
+
+          <article class="guide-card">
+            <h3>Catalog Glossary &amp; Player Notes</h3>
+            <dl class="glossary-list">
+              <dt><abbr title="Role-Playing Game">RPG</abbr></dt>
+              <dd>Story- and strategy-heavy games focused on party stats and progression.</dd>
+
+              <dt><abbr title="Deluxe Edition">DX</abbr></dt>
+              <dd>Expanded edition featuring bonus chambers, remastered audio, or quality-of-life fixes.</dd>
+
+              <dt>Relaxed / Balanced / Challenging</dt>
+              <dd>Difficulty labels indicating reflex demand and penalty for mistakes.</dd>
+
+              <dt>Session Queue</dt>
+              <dd>An in-memory list stored while the tab stays open (resets on reload).</dd>
+            </dl>
+
+            <blockquote class="player-quote" cite="https://pixelvault.example/reviews">
+              <p>
+                &ldquo;Breaking my 40-hour backlog into 90-minute weeknight blocks
+                finally helped me finish two games in one month.&rdquo;
+              </p>
+              <cite>&mdash; Community Play Club Member</cite>
+            </blockquote>
+          </article>
+        </div>
+
+        <div class="table-card">
+          <h3>Weekly Community Play Club Schedule</h3>
+          <div class="table-wrap">
+            <table class="schedule-table">
+              <caption>
+                Live co-op and backlog check-in sessions hosted weekly. Times are in local evening hours.
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Day</th>
+                  <th scope="col">Time</th>
+                  <th scope="col">Spotlight Activity</th>
+                  <th scope="col">Pace</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tuesday</th>
+                  <td><time datetime="19:00">7:00 PM</time></td>
+                  <td>Short Action &amp; Puzzle Sprints</td>
+                  <td>Relaxed</td>
+                </tr>
+                <tr>
+                  <th scope="row">Thursday</th>
+                  <td><time datetime="19:30">7:30 PM</time></td>
+                  <td><abbr title="Role-Playing Game">RPG</abbr> Strategy Check-In</td>
+                  <td>Balanced</td>
+                </tr>
+                <tr>
+                  <th scope="row">Saturday</th>
+                  <td><time datetime="20:00">8:00 PM</time></td>
+                  <td>Weekend Boss Rush &amp; Backlog Review</td>
+                  <td>Challenging</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Suggest a Title or Report an Issue</h2>
+          <p>
+            Spot an inaccurate playtime or want another indie gem added? Send a
+            quick note below.
+          </p>
+        </div>
+
+        <div class="form-card">
+          <form id="requestForm" novalidate>
+            <div class="input-row">
+              <div class="field-group">
+                <label for="visitorName">Your Name (required)</label>
+                <input
+                  id="visitorName"
+                  name="visitorName"
+                  type="text"
+                  required
+                  minlength="2"
+                  maxlength="40"
+                  placeholder="Alex Rivera"
+                >
+              </div>
+
+              <div class="field-group">
+                <label for="visitorEmail">Email Address (required)</label>
+                <input
+                  id="visitorEmail"
+                  name="visitorEmail"
+                  type="email"
+                  required
+                  placeholder="alex@example.com"
+                >
+              </div>
+            </div>
+
+            <fieldset class="radio-fieldset">
+              <legend>Submission Type</legend>
+              <label class="radio-label">
+                <input
+                  type="radio"
+                  name="requestType"
+                  value="suggest"
+                  checked
+                >
+                Suggest a new title
+              </label>
+              <label class="radio-label">
+                <input
+                  type="radio"
+                  name="requestType"
+                  value="report"
+                >
+                Report inaccurate info
+              </label>
+            </fieldset>
+
+            <div class="input-row">
+              <div class="field-group">
+                <label for="requestTitle">Game Title (required)</label>
+                <input
+                  id="requestTitle"
+                  name="requestTitle"
+                  type="text"
+                  required
+                  minlength="2"
+                  maxlength="60"
+                  placeholder="Starlight Drifter"
+                >
+              </div>
+
+              <div class="field-group">
+                <label id="releaseYearLabel" for="releaseYear">
+                  Release Year (required for new suggestions)
+                </label>
+                <input
+                  id="releaseYear"
+                  name="releaseYear"
+                  type="number"
+                  min="1975"
+                  max="2026"
+                  step="1"
+                  required
+                  placeholder="2024"
+                >
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label for="lastPlayedDate">Date Last Played (optional)</label>
+              <input
+                id="lastPlayedDate"
+                name="lastPlayedDate"
+                type="date"
+              >
+            </div>
+
+            <div class="field-group">
+              <label for="requestMessage">Details (required, min 10 characters)</label>
+              <textarea
+                id="requestMessage"
+                name="requestMessage"
+                rows="4"
+                required
+                minlength="10"
+                maxlength="300"
+                placeholder="Tell us why this game belongs here or what needs fixing..."
+              ></textarea>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Submit Request</button>
+          </form>
+
+          <div id="formConfirmation" class="confirmation-box" hidden>
+            <h3>Thanks! Your submission has been noted.</h3>
+            <p id="confirmationDetails"></p>
+            <button id="submitAnotherBtn" class="btn btn-secondary" type="button">
+              Send Another Request
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 PixelVault &mdash; Built with vanilla HTML, CSS, and JavaScript.</p>
+      <address>
+        Questions? Email <a href="mailto:hello@pixelvault.example">hello@pixelvault.example</a>
+      </address>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
